@@ -1,8 +1,7 @@
-FROM openjdk:11
+FROM eclipse-temurin:11
 
-COPY target/spring-boot-docker-app.jar /usr/app/
+COPY target/online-quiz-maker-0.0.1-SNAPSHOT.jar /usr/app/app.jar
 
-WORKDIR /usr/app/
+WORKDIR /usr/app
 
-ENTRYPOINT ["java", "-jar", "spring-boot-docker-app.jar"]
-
+ENTRYPOINT ["java", "-jar", "app.jar"]
