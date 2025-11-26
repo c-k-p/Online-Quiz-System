@@ -1,1 +1,34 @@
+version: "3.8"
+
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: online-quiz-system-app
+    container_name: quiz_app
+    ports:
+      - "9192:9192"
+    depends_on:
+      - mysqldb
+    networks:
+      - quiz-net
+    volumes:
+      - /data/quiz-app
+
+  mysqldb:
+    image: mysql:5.7
+    container_name: quiz_mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=pandey
+      - MYSQL_DATABASE=online_quiz_maker
+    networks:
+      - quiz-net
+    ports:
+      - "3306:3306"
+    volumes:
+      - /data/quiz-mysql
+
+networks:
+  quiz-net:
 
